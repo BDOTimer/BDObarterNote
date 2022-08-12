@@ -1,0 +1,60 @@
+﻿[+] 3: ------------------------------------------------------------------------:
+Проиграть музыку прои закрытии.
+
+//-------------------------------------------: 1
+private SoundPlayer Player = new SoundPlayer();
+private void loadSoundAsync()
+{   this.Player.SoundLocation = "http://www.tailspintoys.com/sounds/stop.wav";
+    this.Player.LoadAsync();
+}
+
+private void Player_LoadCompleted (
+    object sender, 
+    System.ComponentModel.AsyncCompletedEventArgs e)
+{   if (this.Player.IsLoadCompleted)
+    {   this.Player.PlaySync();
+    }
+}
+
+//-------------------------------------------: 2
+using System.Threading;
+    Console.WriteLine("Sleep for 2 seconds.");
+    Thread.Sleep(2000);
+
+//-------------------------------------------: 3
+Task.Factory.StartNew(() =>
+{   // Здесь загрузка ваших файлов
+    var files = new string[] {
+        @"C:\Windows\Media\Alarm01.wav",
+        @"C:\Windows\Media\Alarm02.wav",
+        @"C:\Windows\Media\Alarm03.wav" };
+    var player = new SoundPlayer();
+    while (true)
+    {   foreach (var file in files)
+        {   player.SoundLocation = file;
+            player.PlaySync();
+        }
+    }
+}, TaskCreationOptions.LongRunning);
+
+[+] 2: ------------------------------------------------------------------------:
+Глючная работа.
+    private void myForm_Move(object sender, EventArgs e)
+    {   if(showmode != null && Showmode.ready) showmode.save();
+    }
+
+[+] 1: ------------------------------------------------------------------------:
+Ѕлокировка Image.FromFile файла в директории - например,
+нельзя переименовать/удалить и т.д..
+{   PictureBox pb       = createPictureBox(F);
+               pb.Image = Image.FromFile  (names[i].FullName);
+}
+
+Решение:
+    using (var stream = File.Open(names[i].FullName, FileMode.Open))
+    {  pb.Image = Image.FromStream(stream);
+    }
+
+    pb.Image = Image.FromStream
+        (new MemoryStream(File.ReadAllBytes(names[i].FullName)));
+
