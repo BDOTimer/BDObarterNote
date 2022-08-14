@@ -13,17 +13,15 @@ ____
 Возможно понадобится дополнительная установка: [dotNetFx40_Client_x86_x64.exe](https://www.microsoft.com/ru-RU/download/details.aspx?id=24872). 
 
 ____ 
+## Как оно выглядит:
 
-:one: 
-____ 
+:one: ...
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
 
-:two: 
-____ 
+:two: ...
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[1].jpg)
 
-:three: 
-____ 
+:three: ...
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[2].jpg)
 ____ 
 ...
