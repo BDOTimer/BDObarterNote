@@ -1,34 +1,34 @@
-///----------------------------------------------------------------------------|
+///-------------------------------------------------------------------------- 01
 /// Serialize/Deserialize.
 ///----------------------------------------------------------------------------:
-using (var stream = File.Create("file.xml"))
+using (var  stream = File.Create("file.xml"))
 {   var serializer = new XmlSerializer(typeof(string[]));
     serializer.Serialize(stream, someArrayOfStrings);
 }
 
-//----------------- Создали коллекцию из десяти студентов -----------------
+//----------------- Создали коллекцию из десяти студентов ---------------------:
 List<Студент> stds = new List<Студент>();
 for (int i = 0; i < 10; i++)
-{   stds.Add(new Студент("фамилия " + i.ToString(), 
-                         "имя " + i.ToString(), 
+{   stds.Add(new Студент("фамилия "  + i.ToString(), 
+                         "имя "      + i.ToString(), 
                          "отчество " + i.ToString(), 
-                         "город " + i.ToString(), 
+                         "город "    + i.ToString(), 
                          DateTime.Now, 
                          DateTime.Now, 
                          new int[]{5, 5}));
 }
-//------------------------------------------------------------------------------------
-using (FileStream fs = new FileStream(@"C:\1.txt", FileMode.Create, FileAccess.Write))
+//-----------------------------------------------------------------------------:
+using (FileStream fs = new FileStream
+                               (@"C:\1.txt", FileMode.Create, FileAccess.Write))
 {   XmlSerializer serializer = new XmlSerializer(stds.GetType());
     serializer.Serialize(fs, stds);
 }
-
 
 // для сериализации следующим образом:
 private async Task SaveSettings(Settings settings)
 {   var folder  = Windows.Storage.ApplicationData.Current.LocalFolder;
     var options = Windows.Storage.CreationCollisionOption.ReplaceExisting;
-    var file = await folder.CreateFileAsync("Settings.XML", options);
+    var file    = await   folder .CreateFileAsync("Settings.XML", options);
     try
     {   XmlSerializer SerializerObj = new XmlSerializer(typeof(Settings));
         SerializerObj.Serialize(await file.OpenStreamForWriteAsync(), settings);
@@ -56,7 +56,10 @@ private async Task<Settings> LoadSettings()
     }
 }
 
-///----------------------------------------------------------------------------|
+[Serializable] — используется, когда мы помечаем объект как сериализуемый. [NonSerialized] — используется, когда мы не хотим сериализовать поле объекта. [OnSerializing] — используется, когда мы хотим выполнить какое-то действие при сериализации объекта. 
+[OnSerialized] — используется, когда мы хотим выполнить какое-то действие после сериализации объекта в поток.
+
+///-------------------------------------------------------------------------- 02
 /// Как воспроизвести mp3 файл.
 ///----------------------------------------------------------------------------:
 namespace Form2
@@ -81,7 +84,7 @@ namespace Form2
     }
 }
 
-///----------------------------------------------------------------------------|
+///-------------------------------------------------------------------------- 03
 /// reflection.
 ///----------------------------------------------------------------------------:
         void test_01()

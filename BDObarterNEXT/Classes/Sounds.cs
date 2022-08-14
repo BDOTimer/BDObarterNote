@@ -24,6 +24,7 @@ namespace BDObarterNEXT
             SHOW    ,
             RESET   ,
             NPANEL  ,
+            MOVEBACK,
             EXIT
         }
 
@@ -73,13 +74,12 @@ namespace BDObarterNEXT
         // Для работы необходимо подключить WindowsBase.dll PresentationCore.dll
         // [System.Runtime.InteropServices.DllImport("winmm.dll")]
         // private static extern
-        //    Boolean PlaySound(string lpszName, int hModule, int dwFlags);
+        // Boolean PlaySound(string lpszName, int hModule, int dwFlags);
         static MediaPlayer player = new MediaPlayer();
-        static void xxxtest()
-        {   player .Open(new Uri("snd\\sound.mp3", UriKind.Relative));
+        public static void xxxtest()
+        {   player .Open(new Uri("snd\\boyz.mp3", UriKind.Relative));
             player .Play   ();
-            //Console.ReadKey();
-            //player .Close  ();
+          //player .Close  ();
         }
     }
 }

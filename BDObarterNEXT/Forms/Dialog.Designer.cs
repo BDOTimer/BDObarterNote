@@ -14,8 +14,7 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
-                components.Dispose();
+            {   components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -35,7 +34,10 @@
             this.labelScale = new System.Windows.Forms.Label();
             this.dialButtonTextOut = new System.Windows.Forms.Button();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.trackBarOpacity = new System.Windows.Forms.TrackBar();
+            this.labelOpacity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // dialButtonReset
@@ -63,7 +65,7 @@
             // dialTrackBarScale
             // 
             this.dialTrackBarScale.Cursor = System.Windows.Forms.Cursors.UpArrow;
-            this.dialTrackBarScale.Location = new System.Drawing.Point(12, 101);
+            this.dialTrackBarScale.Location = new System.Drawing.Point(12, 132);
             this.dialTrackBarScale.Maximum = 80;
             this.dialTrackBarScale.Minimum = 20;
             this.dialTrackBarScale.Name = "dialTrackBarScale";
@@ -89,7 +91,7 @@
             // labelScale
             // 
             this.labelScale.AutoSize = true;
-            this.labelScale.Location = new System.Drawing.Point(12, 85);
+            this.labelScale.Location = new System.Drawing.Point(12, 116);
             this.labelScale.Name = "labelScale";
             this.labelScale.Size = new System.Drawing.Size(59, 13);
             this.labelScale.TabIndex = 4;
@@ -98,9 +100,9 @@
             // dialButtonTextOut
             // 
             this.dialButtonTextOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
-            this.dialButtonTextOut.Location = new System.Drawing.Point(100, 10);
+            this.dialButtonTextOut.Location = new System.Drawing.Point(12, 68);
             this.dialButtonTextOut.Name = "dialButtonTextOut";
-            this.dialButtonTextOut.Size = new System.Drawing.Size(75, 23);
+            this.dialButtonTextOut.Size = new System.Drawing.Size(82, 23);
             this.dialButtonTextOut.TabIndex = 5;
             this.dialButtonTextOut.Text = "Текст";
             this.dialButtonTextOut.UseVisualStyleBackColor = false;
@@ -112,11 +114,35 @@
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
+            // trackBarOpacity
+            // 
+            this.trackBarOpacity.Cursor = System.Windows.Forms.Cursors.UpArrow;
+            this.trackBarOpacity.Location = new System.Drawing.Point(15, 183);
+            this.trackBarOpacity.Maximum = 100;
+            this.trackBarOpacity.Minimum = 20;
+            this.trackBarOpacity.Name = "trackBarOpacity";
+            this.trackBarOpacity.Size = new System.Drawing.Size(79, 45);
+            this.trackBarOpacity.TabIndex = 6;
+            this.trackBarOpacity.TickFrequency = 10;
+            this.trackBarOpacity.Value = 80;
+            this.trackBarOpacity.ValueChanged += new System.EventHandler(this.trackBarOpacity_ValueChanged);
+            // 
+            // labelOpacity
+            // 
+            this.labelOpacity.AutoSize = true;
+            this.labelOpacity.Location = new System.Drawing.Point(12, 167);
+            this.labelOpacity.Name = "labelOpacity";
+            this.labelOpacity.Size = new System.Drawing.Size(85, 13);
+            this.labelOpacity.TabIndex = 7;
+            this.labelOpacity.Text = "Прозрачность: ";
+            // 
             // Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.labelOpacity);
+            this.Controls.Add(this.trackBarOpacity);
             this.Controls.Add(this.dialButtonTextOut);
             this.Controls.Add(this.labelScale);
             this.Controls.Add(this.dialButtonExit);
@@ -130,6 +156,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dialog_FormClosing);
             this.Load += new System.EventHandler(this.Dialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +171,7 @@
         private System.Windows.Forms.Label labelScale;
         public System.Windows.Forms.Button dialButtonTextOut;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.Windows.Forms.TrackBar trackBarOpacity;
+        private System.Windows.Forms.Label labelOpacity;
     }
 }

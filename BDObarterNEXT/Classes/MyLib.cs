@@ -23,6 +23,50 @@ namespace BDObarterNEXT
             if (B.Parent == null) return;
             B.Parent.Controls.Remove(B);
         }
+
+        public static void Swap<T>(ref T a, ref T b)
+        {   T t = b;
+              b = a;
+              a = t;
+        }
+
+        private static void SwapPosLeft(ref Control a, Control b)
+        {   var tmp = a.Left;
+             a.Left = b.Left;
+             b.Left = tmp   ;
+        }
+
+        public static void MoveControlBack(Control a)
+        {
+            Control p = a.Parent;
+            var i = p.Controls.IndexOf(a);
+
+            if (i > 0)
+            {
+                p.Controls.SetChildIndex(a, i - 1);
+                SwapPosLeft(ref a, p.Controls[i]);
+            }
+        }
+
+        //--------------------------------------|
+        // resizefont.                          |
+        //--------------------------------------:
+        public static void resizefont(Control[] CC, fromDipTo conv, int a)
+        {
+            if(CC.Length == 0) return;
+
+            float r = conv.Convert(a);
+            Font  f = CC[0].Font;
+            Font  F = new Font(
+                  f.FontFamily,
+                  r           ,
+                  f.Style     ,
+                  f.Unit      ,
+                  f.GdiCharSet
+            );
+
+            foreach(var C in CC) C.Font = F;
+        }
     }
 
     //----------------------------------------|
@@ -91,5 +135,39 @@ namespace BDObarterNEXT
         {   if(T.Visible) return T.Height + 4;
             else          return            0;
         }
+    }
+
+    //-------------------------------------------------|
+    //  source - диапазон изменения входного параметра.|
+    //  dest   - диапазон приведение выхода.           |
+    //-------------------------------------------------:
+    public class fromDipTo
+    {   public   fromDipTo(Point   dest, Point source)
+                 {  this.dest   =  dest;
+                    this.source =  source;
+                    d = (float)((source.Y - source.X) /
+                                (dest  .Y - dest  .X));
+                 }
+
+        public int Convert(int a)
+        {
+            if (a < source.X) return dest.X;
+            if (a > source.Y) return dest.Y;
+
+            return (int)(((float)(a - source.X)) / d) + dest.X;
+        }
+
+        public static void test()
+        {
+            fromDipTo m = new fromDipTo(new Point( 2,  11),
+                                        new Point(21, 100));
+            int r = m.Convert(21);
+
+            MyLib.textout.add("r = ", r);
+        }
+
+        private Point dest  ;
+        private Point source;
+        private float d     ;
     }
 }

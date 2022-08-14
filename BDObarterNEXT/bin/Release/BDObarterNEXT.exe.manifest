@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BDObarterNEXT.exe" size="75264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BDObarterNEXT.exe" size="78336">
       <assemblyIdentity name="BDObarterNEXT" version="1.0.0.0" publicKeyToken="613D4B821875392D" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>r7HymCHdgSlu7XlCp7XfiUYa0SE=</dsig:DigestValue>
+        <dsig:DigestValue>0G9EgHbvZA6CkPo2m11QJ9aw4gc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

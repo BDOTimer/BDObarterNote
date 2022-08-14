@@ -16,6 +16,21 @@ namespace BDObarterNEXT
             InitializeComponent();
 
             this.dialButtonTextOut.BackColor = rgb(255, 200, 200);
+
+            CCforfont    = new Control[2]   ;
+            CCforfont[0] = myform.buttonNP  ;
+            CCforfont[1] = myform.buttonShow;
+
+            // this.SetDesktopLocation(200, 200); // ???
+        }
+
+        private Control[] CCforfont;
+        public void resizefont()
+        {   MyLib  .resizefont(
+                this  .CCforfont     ,
+                myForm.fromdipto_font,
+                myForm.cfg.scale
+            );
         }
 
         static myForm myform;
@@ -24,23 +39,26 @@ namespace BDObarterNEXT
         {   
         }
 
-        private static string labeltext;
+        private static string labelscaletext ;
+        private static string labelopacitytext;
+
         public  static Dialog Create(myForm F)
-        {
-            myform = F;
+        {   myform = F;
 
             Dialog dial         = new Dialog();
                    dial.Owner   = F           ;
                    dial.Show                ();
-                   dial.Visible = false       ;
-                   labeltext    = dial.labelScale.Text;
-                   dial.labelScale.Text  = labeltext
+                   dial.Visible = true        ;
+
+                   labelscaletext    = dial.labelScale.Text;
+                   dial.labelScale.Text  = labelscaletext
                                          + Convert.ToString(myForm.cfg.scale);
                    dial.dialTrackBarScale.Value =  myForm.cfg.scale;
 
-                 //MyLib.textout.add("dial.dialTrackBarScale.Value",
-                 //                   dial.dialTrackBarScale.Value);
-
+                   labelopacitytext = dial.labelOpacity.Text;
+                   dial.labelOpacity.Text = labelopacitytext
+                                          + Convert.ToString
+                                                (dial.trackBarOpacity.Value);
             return dial;
         }
 
@@ -58,7 +76,8 @@ namespace BDObarterNEXT
         }
 
         private void dialButtonReset_Click(object sender, EventArgs e)
-        {   myForm.apbox.reset();
+        {   myForm.sounds.play(MySounds.eSND.RESET);
+            myForm.apbox.reset();
         }
 
         public bool isborder = true;
@@ -88,13 +107,20 @@ namespace BDObarterNEXT
         private void dialTrackBarScale_ValueChanged(object sender, EventArgs e)
         {
             myForm.cfg.scale     = dialTrackBarScale.Value;
-            this.labelScale.Text = labeltext
+            this.labelScale.Text = labelscaletext
                                  + Convert.ToString(dialTrackBarScale.Value);
 
           //myform.SuspendLayout();
             myForm.apbox.reCorrected(myform);
           //myform.ResumeLayout(false);
-            myform.Refresh();
+
+            if (myForm.fromdipto_font == null)
+            {   MyLib.textout.add("myForm.fromdipto_font == null");
+                return;
+            }
+
+            this.resizefont();
+            myform.Refresh ();
         }
 
         private void dialButtonTextOut_Click(object sender, EventArgs e)
@@ -105,6 +131,24 @@ namespace BDObarterNEXT
             else    this.dialButtonTextOut.BackColor = rgb(255, 200, 200);
 
             myForm.apbox.reCorrected(myform);
+        }
+
+        public Point getdialTrackBarScaleRange()
+        {   return new Point(
+                dialTrackBarScale.Minimum,
+                dialTrackBarScale.Maximum);
+        }
+
+        private void trackBarOpacity_ValueChanged(object sender, EventArgs e)
+        {   (this.Owner).Opacity = 0.01 * trackBarOpacity.Value;
+
+            this.labelOpacity.Text = labelopacitytext
+                                   + Convert.ToString(trackBarOpacity.Value);
+        }
+
+        public void set_dialTrackBarScale(int scale)
+        {   myForm.cfg.scale        = scale;
+            dialTrackBarScale.Value = scale;
         }
     }
 }

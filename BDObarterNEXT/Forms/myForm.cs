@@ -16,6 +16,8 @@ namespace BDObarterNEXT
     {
         public myForm()
         {
+            MySounds.xxxtest();
+
             InitializeComponent ();
           //this.KeyPreview = true;
 
@@ -37,14 +39,26 @@ namespace BDObarterNEXT
             init_move_myform();
 
             mySerial.close();
+
+            if (apbox.is_correct_ifbig_sizeform_thenscreen(this))
+            {   MyLib.textout.add("is_correct_ifbig_sizeform_thenscreen(.)");
+            }
+
+            fromdipto_font = new fromDipTo(
+                new Point(8, 35),
+                dialog.getdialTrackBarScaleRange()
+            );
+
+            dialog.resizefont();
         }
 
-        public  static Config              cfg;
-        public  static AllPicBox         apbox;
-        public  static Dialog           dialog;
-        public  static Showmode       showmode;
-        private static MySounds         sounds;
-        private static mySerializator mySerial;
+        public  static fromDipTo fromdipto_font;
+        public  static Config               cfg;
+        public  static AllPicBox          apbox;
+        public  static Dialog            dialog;
+        public  static Showmode        showmode;
+        public  static MySounds          sounds;
+        private static mySerializator  mySerial;
 
         public Panel   get_panelDest   () { return panelDest   ;}
         public Panel   get_panelSources() { return panelSources;}
@@ -74,17 +88,61 @@ namespace BDObarterNEXT
             }
         }
 
+        //-----------------------------------------------------|
+        //  Двигаем PictureBox'ы.                              |
+        //-----------------------------------------------------:
         public void dlgPicBox_Click(object sender, EventArgs e)
         { //MyLib.textout.add("dlgPicBox_Click(...)");
 
-            sounds.play(MySounds.eSND.MOVE);
-            AllPicBox.moveTo((PictureBox)sender, panelDest);
+            PictureBox     B = (PictureBox)sender  ;
+            Panel          P =      (Panel)B.Parent;
+            MouseEventArgs E = (MouseEventArgs)   e;
+
+            switch (P.Name)
+            {
+                //--------------|
+                // panelDest.   |
+                //--------------:
+                case "panelDest":
+                {   switch (E.Button)
+                    {   case MouseButtons.Left :
+                        {   sounds.play(MySounds.eSND.MOVEBACK);
+                            MyLib.MoveControlBack(B);
+                            break; 
+                        }
+                        case MouseButtons.Right:
+                        {   
+                            break;
+                        }
+                    }
+                    break;
+                }
+
+                //--------------|
+                // panelSource. |
+                //--------------:
+                case "source":
+                {   switch (E.Button)
+                    {   case MouseButtons.Left :
+                        {   sounds.play(MySounds.eSND.MOVE);
+                            AllPicBox.moveTo(B,  panelDest);
+                            break; 
+                        }
+                        case MouseButtons.Right:
+                        {   
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
+        //-----------------------------------------------------|
+        //  MyLib.textout.add("buttonNP_MouseUp(.)");          |
+        //-----------------------------------------------------:
         private void buttonNP_MouseUp(object sender, MouseEventArgs e)
-        {
-          //MyLib.textout.add("buttonNP_MouseClick1(.)");
-            sounds.play(MySounds.eSND.NPANEL);
+        {   sounds.play(MySounds.eSND.NPANEL);
             switch (e.Button)
             {   case MouseButtons.Left : { apbox.rollNPV     (); break; }
                 case MouseButtons.Right: { apbox.rollNPV_back(); break; }
@@ -106,8 +164,10 @@ namespace BDObarterNEXT
         {   mcur = false;
             if (mcurdone)
             {
-                sounds.play(MySounds.eSND.SHOW);
-                showmode.set ();
+                if (((Control)sender).Name == "buttonShow")
+                {   sounds  .play(MySounds.eSND.SHOW);
+                    showmode.set ();
+                }
             }
             else mcurdone = true;
         }

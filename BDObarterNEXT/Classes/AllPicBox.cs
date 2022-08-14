@@ -206,11 +206,30 @@ namespace BDObarterNEXT
         }
         //<--------------------------------------------------------------------|
 
+        //--------------------------------------|
+        //  Если форма больше экрана.           |------------------------------>
+        //--------------------------------------:
+        public bool is_correct_ifbig_sizeform_thenscreen(myForm F)
+        {
+            Point scr = Textout.GetScreenResolution(   );
+            int   cnt = findmaxcount             (cargo);
+            Size   sz = calcWidthPanel       (Step, cnt);
+            int width = sz.Width + myForm.cfg.scale + 10;
+
+            if(width > scr.X)
+            {
+                int correcting = scr.X / (cnt + 2) - 1;
+                myForm.dialog.set_dialTrackBarScale(correcting);
+
+                reCorrected(F);
+                return true;
+            }
+            return false; 
+        }
 
         private int  nowPanelVis = 0;
         private void setNPV(int  n)
-        {
-            cargo[nowPanelVis].Visible = false;
+        {   cargo[nowPanelVis].Visible = false;
             nowPanelVis = n;
             cargo        [n].Visible = true ;
 
@@ -248,8 +267,7 @@ namespace BDObarterNEXT
 
         private static
         void  reOder(List<Panel> PP)
-        {
-            foreach (Panel P in PP)
+        {   foreach (Panel P in PP)
             {   reOder(P);
             }
         }
@@ -262,13 +280,12 @@ namespace BDObarterNEXT
             int W = P.Controls[0].Width  + Step;
             int H = P.Controls[0].Height + Step;
 
-            {
-                int x = Step;
+            {   int x = Step;
                 int y = Step;
                 foreach (PictureBox B in P.Controls)
                 {
                     B.Left = x;
-                    B.Top = y;
+                    B.Top  = y;
 
                     x += W;
                 }
@@ -290,9 +307,8 @@ namespace BDObarterNEXT
         //--------------------------------------:
         private static
         void correctForm(myForm F)
-        {
-            int SCALE = myForm.cfg.scale ;
-            int Th    = MyLib .textout.height   ();
+        {   int SCALE =  myForm.cfg.scale;
+            int Th    =  MyLib .textout.height  ();
 
             Panel   P        = F.get_panelDest  ();
                     P.Height = SCALE + Step + Step;
@@ -326,8 +342,7 @@ namespace BDObarterNEXT
 
         public static 
         void moveTo(PictureBox B, Panel P)
-        {
-            Panel o =  (Panel)B.Parent;
+        {   Panel o =  (Panel)B.Parent;
                   o.Controls.Remove(B);
                   P.Controls.Add   (B);
                   reOder(P);
@@ -361,8 +376,7 @@ namespace BDObarterNEXT
         // +++                                  |------------------------------>
         //--------------------------------------:
         public void reset()
-        {
-            foreach     (var        pn in cargoPB)
+        {   foreach     (var        pn in cargoPB)
             {   foreach (PictureBox pb in pn     )
                 {   MyLib.ReMove(pb);
                 }
