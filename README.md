@@ -1,9 +1,9 @@
-____
+____ 
 # Утилита в виде графического блокнота для прокладки маршрутов бартера в игре BDO.
 
 Тема на кибер-форуме:
 [www.cyberforum.ru](https://www.cyberforum.ru/mmo-games/thread1975425.html)
-____
+____ 
 ## Общий комментарий:
 
 Прожект VS 2010 C#.
@@ -12,13 +12,18 @@ ____
 
 Возможно понадобится дополнительная установка: [dotNetFx40_Client_x86_x64.exe](https://www.microsoft.com/ru-RU/download/details.aspx?id=24872). 
 
-____
+____ 
 
-:one: ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
+:one: 
+____ 
+![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
 
-:two: ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[1].jpg)
+:two: 
+____ 
+![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[1].jpg)
 
-:three: ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[2].jpg)
-
-____
+:three: 
+____ 
+![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[2].jpg)
+____ 
 ...
