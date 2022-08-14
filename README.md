@@ -5,8 +5,7 @@ ____
 [www.cyberforum.ru](https://www.cyberforum.ru/mmo-games/thread1975425.html)
 ____ 
 ## Общий комментарий:
-
-Прожект VS 2010 C#.
+Прожект VS 2010 C# (+ portable версия exe в папке 'bin')
 
 Базовый фреймворк: NET Framework 4 Client Profile.
 
