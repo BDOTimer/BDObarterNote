@@ -5,7 +5,9 @@ ____
 [www.cyberforum.ru](https://www.cyberforum.ru/mmo-games/thread1975425.html)
 ____
 ## Общий комментарий:
-трололо ...
+Прожект VS 2010 C#
+Базовый фреймворк: NET Framework 4 Client Profile
+Возможно понадобится дополнительная установка [dotNetFx40_Client_x86_x64.exe](https://www.microsoft.com/ru-RU/download/details.aspx?id=24872)
 
 :one: 
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
