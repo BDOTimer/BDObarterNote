@@ -12,6 +12,8 @@ ____
 
 Возможно понадобится дополнительная установка [dotNetFx40_Client_x86_x64.exe](https://www.microsoft.com/ru-RU/download/details.aspx?id=24872). 
 
+____
+
 :one: 
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
 
