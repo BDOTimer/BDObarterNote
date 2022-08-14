@@ -15,12 +15,16 @@ ____
 ____
 
 :one: 
+
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01.jpg)
 
 :two: 
+
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[1].jpg)
 
 :three: 
+
 ![Screenshot in game 1](BDObarterNEXT/!Doc/doc-scr-01[2].jpg)
 
- 
+____
+
