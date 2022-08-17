@@ -16,48 +16,37 @@ namespace BDObarterNEXT
     public class mySerializator
     {
         public mySerializator(string fname)
-        {
-            filename = fname;
+        {   filename  = fname;
             formatter = new BinaryFormatter();
         }
 
-        string          filename;
-        BinaryFormatter formatter;
-
-        public enum eMODE
-        {
-            LOAD,
-            SAVE
-        }
+        string          filename     ;
+        BinaryFormatter formatter    ;
+        bool            error = false;
 
         //----------------------------------|
         // load.                            |
         //----------------------------------:
-        FileStream ffile;
+        FileStream         ffile;
         public void create_load()
         {
+            close();
             try
-            {
-                mode  = eMODE.LOAD;
-                ffile = new FileStream(
+            {   ffile = new FileStream(
                     filename,
                     FileMode  .Open,
                     FileAccess.Read
                 );
             }
             catch
-            {   create_save();
-                Console.WriteLine("catch");
+            {   //throw;
+                error = true;
             }
         }
 
-        private eMODE mode = eMODE.LOAD;
         public void load<T>(ref T o)
-        {
-            switch (mode)
-            {   case eMODE.LOAD: o = (T)formatter.Deserialize(ffile)  ; break;
-                case eMODE.SAVE:        formatter.Serialize(output, o); break;
-            }
+        {   if(error) return;
+            o = (T)formatter.Deserialize(ffile);
         }
 
         private void close_load() { if (ffile != null) ffile.Close(); }
@@ -65,10 +54,11 @@ namespace BDObarterNEXT
         //----------------------------------|
         // save.                            |
         //----------------------------------:
-        FileStream output;
+        FileStream        output;
         public void create_save()
         {
-            mode = eMODE.SAVE;
+            close();
+
             output = new FileStream(
                 filename               ,
                 FileMode  .OpenOrCreate,
@@ -80,17 +70,25 @@ namespace BDObarterNEXT
         {   formatter.Serialize(output, o);
         }
 
-        public void save2(ref object o)
-        {   formatter.Serialize(output, o);
-        }
-
         private void close_save() { if (output != null) output.Close(); }
 
-        public void close()
-        {   switch   (mode)
-            {   case eMODE.LOAD: close_load();  break;
-                case eMODE.SAVE: close_save();  break;
-            }
+        public void close() 
+        {   if (output != null) output.Close();
+            if (ffile  != null) ffile .Close();
+            error = false;
+        }
+
+        //-----------|
+        // test.     |
+        //-----------:
+        void xxxtest_01()
+        {
+            Object          obj = new     Point     (11, 22);
+            Type              t = obj    .GetType   (      );
+            var convertedObject = Convert.ChangeType(obj, t);
+
+            // reflection
+            obj.GetType().GetMethod("MyFunction").Invoke(obj, null);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace BDObarterNEXT
         {   
         }
 
-        static string filename = "cfg.1";
+        public static string filename = "cfg.1";
 
         //-----------------------------------------------------|
         //  Поля конфига.                                      | 
@@ -77,19 +77,21 @@ namespace BDObarterNEXT
         //---------------------------------:
         private int scale_ = 40;
         public int scale
-        {
-            get { return  scale_; }
+        {   get { return  scale_; }
             set { scale_ = value; }
         }
+
+        public FormBorderStyle formBorderStyle = FormBorderStyle.FixedSingle;
+        public bool            dialVisible     = true;
+        public int             transparency    = 10;
         //-----------------------------------------------------.
 
         public void InitSizeSquare(Control c)
-        {
-            c.Width  = scale;
+        {   c.Width  = scale;
             c.Height = scale;
         }
 
-        public static Config load( mySerializator ser)
+        public static Config load( myForm F, mySerializator ser)
         {   Config       cfg = new Config();
             ser.load(ref cfg);
             return       cfg ;

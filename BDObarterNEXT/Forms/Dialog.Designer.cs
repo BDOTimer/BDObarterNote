@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dialButtonReset = new System.Windows.Forms.Button();
             this.dialButtonBorder = new System.Windows.Forms.Button();
             this.dialTrackBarScale = new System.Windows.Forms.TrackBar();
@@ -36,6 +37,7 @@
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.trackBarOpacity = new System.Windows.Forms.TrackBar();
             this.labelOpacity = new System.Windows.Forms.Label();
+            this.toolTipWarning = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +66,7 @@
             // 
             // dialTrackBarScale
             // 
-            this.dialTrackBarScale.Cursor = System.Windows.Forms.Cursors.UpArrow;
+            this.dialTrackBarScale.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.dialTrackBarScale.Location = new System.Drawing.Point(12, 132);
             this.dialTrackBarScale.Maximum = 80;
             this.dialTrackBarScale.Minimum = 20;
@@ -116,15 +118,14 @@
             // 
             // trackBarOpacity
             // 
-            this.trackBarOpacity.Cursor = System.Windows.Forms.Cursors.UpArrow;
+            this.trackBarOpacity.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.trackBarOpacity.Location = new System.Drawing.Point(15, 183);
-            this.trackBarOpacity.Maximum = 100;
-            this.trackBarOpacity.Minimum = 20;
+            this.trackBarOpacity.Maximum = 80;
             this.trackBarOpacity.Name = "trackBarOpacity";
             this.trackBarOpacity.Size = new System.Drawing.Size(79, 45);
             this.trackBarOpacity.TabIndex = 6;
             this.trackBarOpacity.TickFrequency = 10;
-            this.trackBarOpacity.Value = 80;
+            this.trackBarOpacity.Value = 10;
             this.trackBarOpacity.ValueChanged += new System.EventHandler(this.trackBarOpacity_ValueChanged);
             // 
             // labelOpacity
@@ -135,6 +136,14 @@
             this.labelOpacity.Size = new System.Drawing.Size(85, 13);
             this.labelOpacity.TabIndex = 7;
             this.labelOpacity.Text = "Прозрачность: ";
+            // 
+            // toolTipWarning
+            // 
+            this.toolTipWarning.BackColor = System.Drawing.Color.Pink;
+            this.toolTipWarning.ForeColor = System.Drawing.Color.MediumBlue;
+            this.toolTipWarning.IsBalloon = true;
+            this.toolTipWarning.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
+            this.toolTipWarning.ToolTipTitle = "Ахтунг!";
             // 
             // Dialog
             // 
@@ -151,6 +160,7 @@
             this.Controls.Add(this.dialButtonReset);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Dialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройки";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dialog_FormClosing);
@@ -165,13 +175,14 @@
         #endregion
 
         private System.Windows.Forms.Button dialButtonReset;
-        private System.Windows.Forms.Button dialButtonBorder;
         private System.Windows.Forms.TrackBar dialTrackBarScale;
-        private System.Windows.Forms.Button dialButtonExit;
         private System.Windows.Forms.Label labelScale;
         public System.Windows.Forms.Button dialButtonTextOut;
         private System.DirectoryServices.DirectorySearcher directorySearcher1;
-        private System.Windows.Forms.TrackBar trackBarOpacity;
         private System.Windows.Forms.Label labelOpacity;
+        public System.Windows.Forms.Button dialButtonBorder;
+        private System.Windows.Forms.ToolTip toolTipWarning;
+        public System.Windows.Forms.Button dialButtonExit;
+        public System.Windows.Forms.TrackBar trackBarOpacity;
     }
 }

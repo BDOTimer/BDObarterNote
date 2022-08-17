@@ -25,7 +25,10 @@ namespace BDObarterNEXT
             RESET   ,
             NPANEL  ,
             MOVEBACK,
-            EXIT
+            EXIT    ,
+            TOSOURCE,
+            // ...
+            end
         }
 
         private SoundPlayer  sp   ;

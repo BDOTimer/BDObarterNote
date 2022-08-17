@@ -24,10 +24,10 @@ namespace BDObarterNEXT
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            mySerial      = new mySerializator(filenamecfg);
+            mySerial = new mySerializator(Config.filename);
             mySerial.create_load();
             
-            cfg           = Config.load  (mySerial);
+            cfg           = Config.load  (this, mySerial);
             MyLib.textout = new Textout  (textOut);
             apbox         = new AllPicBox(this);
             dialog        = Dialog.Create(this);
@@ -66,7 +66,6 @@ namespace BDObarterNEXT
 
         private void myForm_Load(object sender, EventArgs e)
         {   MyLib.textout.add("myForm_Load(...)");
-          //Showmode.test(this);
         }
 
         private void buttonDial_Click(object sender, EventArgs e)
@@ -77,9 +76,7 @@ namespace BDObarterNEXT
         {   if (dialog.isclickexit)
             {   // EXIT!
                 sounds.play_sync(MySounds.eSND.EXIT);
-              //Config.save(cfg);
-                myForm.showmode.tocfg();
-                this  .tofile( );
+                this  .tofile   ( );
             }
             else
             {   dialog.Visible   = false;
@@ -92,9 +89,7 @@ namespace BDObarterNEXT
         //  Двигаем PictureBox'ы.                              |
         //-----------------------------------------------------:
         public void dlgPicBox_Click(object sender, EventArgs e)
-        { //MyLib.textout.add("dlgPicBox_Click(...)");
-
-            PictureBox     B = (PictureBox)sender  ;
+        {   PictureBox     B = (PictureBox)sender  ;
             Panel          P =      (Panel)B.Parent;
             MouseEventArgs E = (MouseEventArgs)   e;
 
@@ -111,7 +106,10 @@ namespace BDObarterNEXT
                             break; 
                         }
                         case MouseButtons.Right:
-                        {   
+                        {   sounds.play(MySounds.eSND.TOSOURCE);
+                            Panel S = apbox.getNowPanel      ();
+                            AllPicBox.moveTo             (B, S);
+                            AllPicBox.reOder        (panelDest);
                             break;
                         }
                     }
@@ -126,7 +124,8 @@ namespace BDObarterNEXT
                     {   case MouseButtons.Left :
                         {   sounds.play(MySounds.eSND.MOVE);
                             AllPicBox.moveTo(B,  panelDest);
-                            break; 
+                            AllPicBox.reOder(P);
+                            break;
                         }
                         case MouseButtons.Right:
                         {   
@@ -209,10 +208,9 @@ namespace BDObarterNEXT
         //-----------------------------------------------------|
         //  Сериализация.                                      |--------------->
         //-----------------------------------------------------:
-        private static string filenamecfg = "cfg.3";
         private void xxxfromfile(mySerializator ser)
         {
-            mySerial = new mySerializator(filenamecfg);
+            mySerial = new mySerializator(Config.filename);
             mySerial.create_load();
 
             mySerial.load(ref cfg);
@@ -222,12 +220,13 @@ namespace BDObarterNEXT
 
         private void tofile()
         {
-            mySerial.create_save();
+            cfg.dialVisible  = dialog.Visible;
+            cfg.transparency = dialog.trackBarOpacity.Value;
+            myForm.showmode.tocfg();
 
-            mySerial.save(ref cfg);
-            //showmode.xxxsave(mySerial);
-
-            mySerial.close();
+            mySerial.create_save ();
+            mySerial.save (ref cfg);
+            mySerial.close(       );
         }
     }
 }

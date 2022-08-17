@@ -21,7 +21,6 @@ namespace BDObarterNEXT
         public Showmode(myForm F)
         {
             myform  = F;
-            setborder(F.FormBorderStyle);
 
             idp    = new Datapos[(int)Showmode.eMode.end];
             idp[0] = new DataposMax(F);
@@ -52,17 +51,15 @@ namespace BDObarterNEXT
 
         private int mode = 0;
         public void set()
-        {   idp  [mode].save();
-            if( ++mode ==  (int)eMode.end ) mode = 0;
-            idp  [mode].set(   );
+        {   idp  [mode].save(   );
+            if( ++mode ==   (int)eMode.end ) mode = 0;
+            idp  [mode].set (   );
 
-            if (mode == (int)eMode.MAX) 
-                 myForm.dialog.dialButtonTextOut.Enabled = true ;
-            else myForm.dialog.dialButtonTextOut.Enabled = false;
-        }
+            myForm.dialog.dialButtonTextOut.Enabled = 
+                mode == (int)eMode.MAX ? true : false;
 
-        public void setborder(FormBorderStyle FBS)
-        {   Datapos.fbs_static =              FBS;
+            myForm.dialog.dialButtonBorder.Enabled  =
+                mode != (int)eMode.MIN ? true : false;
         }
 
         private void save(){ idp[mode].save(); }
@@ -98,11 +95,12 @@ namespace BDObarterNEXT
     }
 
     //---------------------------------|
-    // Datapos                         |
+    // Datapos                         |<--------------------------------------|
     //---------------------------------:
     [Serializable]
     public class Datapos : IDP
     {
+        [NonSerialized]
         protected myForm F;
 
         //--------------------|
@@ -128,8 +126,7 @@ namespace BDObarterNEXT
         //-----------------------------|
         // Common methods.             |
         //-----------------------------:
-        protected     FormBorderStyle fbs;
-        public static FormBorderStyle fbs_static;
+        protected   FormBorderStyle fbs;
 
         public void pushpos(){   this.pf = F.DesktopLocation;      }
         public void poppos (){   F.SetDesktopLocation(pf.X, pf.Y); }
@@ -157,7 +154,7 @@ namespace BDObarterNEXT
         public override void set()
         {   poppos();
             calc  ();
-            F.FormBorderStyle = fbs_static;
+            F.FormBorderStyle = myForm.cfg.formBorderStyle;
         }
 
         private void calc()
@@ -214,7 +211,7 @@ namespace BDObarterNEXT
         public override void set()
         {   poppos();
             calc  ();
-            F.FormBorderStyle = fbs_static;
+            F.FormBorderStyle = myForm.cfg.formBorderStyle;
         }
 
         private void calc()

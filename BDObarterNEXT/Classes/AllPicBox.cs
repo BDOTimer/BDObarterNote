@@ -18,6 +18,8 @@ namespace BDObarterNEXT
           //MLF.textout.add("new AllPicBox(...)");
           //MLF.textout.add("AllPicBox.Config.scale", myform.cfg.scale);
 
+            colorButtonHolder = new ColorButtonHolder();
+
             MLF.ReMove  (F.get_panelSources());
 
             loadPictures(F);
@@ -35,6 +37,10 @@ namespace BDObarterNEXT
         myForm              myform;
         List<Panel>          cargo;
         List<PictureBox>[] cargoPB; // Нужно для reset().
+
+        ColorButtonHolder colorButtonHolder;
+
+        public Panel getNowPanel(){ return cargo[nowPanelVis]; }
 
         //-------------------|
         // Шаг между боксами.|
@@ -253,8 +259,9 @@ namespace BDObarterNEXT
         }
 
         private void viewNPV()
-        {   myForm   F = (myForm)cargo[0].Parent;
+        {   myForm        F = (myForm)cargo[0].Parent;
             F.buttonNP.Text = Convert.ToString(nowPanelVis);
+            colorButtonHolder.setColorForegraound(F.buttonNP, nowPanelVis);
         }
 
         //--------------------------------------|
@@ -272,7 +279,7 @@ namespace BDObarterNEXT
             }
         }
 
-        private static
+        public static
         void reOder(Panel P)
         {
             if (P.Controls.Count == 0) return;
@@ -389,6 +396,27 @@ namespace BDObarterNEXT
                 }
                 reOder(P);
             }
+        }
+    }
+
+    public class ColorButtonHolder
+    {   public   ColorButtonHolder()
+        {   color    = new Color[6];
+            color[0] = MyLib.rgb(128, 128, 128);
+            color[1] = MyLib.rgb( 64,  64,  64);
+            color[2] = MyLib.rgb(  0, 200,   0);
+            color[3] = MyLib.rgb(  0,   0, 250);
+            color[4] = MyLib.rgb(250, 200,   0);
+            color[5] = MyLib.rgb(200,   0,   0);
+        }
+
+        Color[] color;
+
+        public void setColorForegraound(Control C, int i)
+        {
+            if (i > 5)
+            {   C.ForeColor = MyLib.rgb(0, 0, 0); return;
+            }   C.ForeColor = color[i];
         }
     }
 }

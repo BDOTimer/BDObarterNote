@@ -124,7 +124,7 @@
             this.Name = "myForm";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BDObarterNEXT";
+            this.Text = "BDObarterNote";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.White;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.myForm_FormClosing);

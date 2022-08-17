@@ -15,13 +15,13 @@ namespace BDObarterNEXT
         {
             InitializeComponent();
 
-            this.dialButtonTextOut.BackColor = rgb(255, 200, 200);
+            this.dialButtonTextOut.BackColor = MyLib.rgb(255, 200, 200);
 
             CCforfont    = new Control[2]   ;
             CCforfont[0] = myform.buttonNP  ;
             CCforfont[1] = myform.buttonShow;
 
-            // this.SetDesktopLocation(200, 200); // ???
+            setButtonBorder(myForm.cfg.formBorderStyle);
         }
 
         private Control[] CCforfont;
@@ -36,7 +36,8 @@ namespace BDObarterNEXT
         static myForm myform;
 
         private void Dialog_Load(object sender, EventArgs e)
-        {   
+        {   toolTipWarning.SetToolTip(dialButtonExit, "ВЫХОД из программы!");
+            toolTipWarning.UseFading = true;
         }
 
         private static string labelscaletext ;
@@ -48,7 +49,7 @@ namespace BDObarterNEXT
             Dialog dial         = new Dialog();
                    dial.Owner   = F           ;
                    dial.Show                ();
-                   dial.Visible = true        ;
+                   dial.Visible = myForm.cfg.dialVisible;
 
                    labelscaletext    = dial.labelScale.Text;
                    dial.labelScale.Text  = labelscaletext
@@ -56,9 +57,12 @@ namespace BDObarterNEXT
                    dial.dialTrackBarScale.Value =  myForm.cfg.scale;
 
                    labelopacitytext = dial.labelOpacity.Text;
+
+                   int    op = myForm.cfg.transparency;
+                   F.Opacity = 0.01 * (100    - op);
+                   dial.trackBarOpacity.Value = op ;
                    dial.labelOpacity.Text = labelopacitytext
-                                          + Convert.ToString
-                                                (dial.trackBarOpacity.Value);
+                                          + Convert.ToString(op);
             return dial;
         }
 
@@ -80,23 +84,35 @@ namespace BDObarterNEXT
             myForm.apbox.reset();
         }
 
-        public bool isborder = true;
-        private void dialButtonBorder_MouseDown(object sender, MouseEventArgs e)
-        {   isborder = !isborder;
-            if(isborder) myform.FormBorderStyle = FormBorderStyle.FixedSingle;
-            else         myform.FormBorderStyle = FormBorderStyle.None       ;
+        const FormBorderStyle BY = FormBorderStyle.FixedSingle;
+        const FormBorderStyle BN = FormBorderStyle.None       ;
 
-            if (isborder) this.dialButtonBorder.BackColor = rgb(200, 255, 200);
-            else          this.dialButtonBorder.BackColor = rgb(255, 200, 200);
+        //----------------------------------------------------- setButtonBorder:
+        public void setButtonBorder(FormBorderStyle a)
+        {
+            MyLib.textout.add("setButtonBorder()");
 
-            myForm.showmode.setborder(myform.FormBorderStyle);
+            myform.FormBorderStyle = a;
+
+            if (a == BY) this.dialButtonBorder.BackColor = MyLib.rgb(200, 255, 200);
+            else         this.dialButtonBorder.BackColor = MyLib.rgb(255, 200, 200);
         }
 
-        private static Color rgb(int r, int g, int b)
-        {   return Color.FromArgb(
-                ((int)(((byte)(r)))),
-                ((int)(((byte)(g)))),
-                ((int)(((byte)(b)))));
+        //-------------------------------------------------- switchButtonBorder:
+        public void switchButtonBorder()
+        {
+            MyLib.textout.add("switchButtonBorder()");
+
+            FormBorderStyle a = myform.FormBorderStyle;
+
+            if (a == BN) setButtonBorder(BY);
+            else         setButtonBorder(BN);
+
+            myForm.cfg.formBorderStyle = myform.FormBorderStyle;
+        }
+
+        private void dialButtonBorder_MouseDown(object sender, MouseEventArgs e)
+        {   switchButtonBorder();
         }
 
         private void Dialog_FormClosing(object sender, FormClosingEventArgs e)
@@ -127,8 +143,8 @@ namespace BDObarterNEXT
         {
             bool b = MyLib.textout.onoff();
 
-            if  (b) this.dialButtonTextOut.BackColor = rgb(200, 255, 200);
-            else    this.dialButtonTextOut.BackColor = rgb(255, 200, 200);
+            if  (b) this.dialButtonTextOut.BackColor = MyLib.rgb(200, 255, 200);
+            else    this.dialButtonTextOut.BackColor = MyLib.rgb(255, 200, 200);
 
             myForm.apbox.reCorrected(myform);
         }
@@ -140,15 +156,17 @@ namespace BDObarterNEXT
         }
 
         private void trackBarOpacity_ValueChanged(object sender, EventArgs e)
-        {   (this.Owner).Opacity = 0.01 * trackBarOpacity.Value;
-
-            this.labelOpacity.Text = labelopacitytext
-                                   + Convert.ToString(trackBarOpacity.Value);
+        {   setTransparency(trackBarOpacity.Value);
         }
 
         public void set_dialTrackBarScale(int scale)
         {   myForm.cfg.scale        = scale;
             dialTrackBarScale.Value = scale;
+        }
+
+        private void setTransparency(int op)
+        {  (this.Owner).Opacity     = 0.01 * (100 - op);
+            this.labelOpacity.Text  = labelopacitytext + Convert.ToString(op);
         }
     }
 }
