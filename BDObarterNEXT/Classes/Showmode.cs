@@ -11,11 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 using MLF = BDObarterNEXT.MyLib;
 
 namespace BDObarterNEXT
 {
+
     public sealed class Showmode
     {
         public Showmode(myForm F)
@@ -55,11 +57,32 @@ namespace BDObarterNEXT
             if( ++mode ==   (int)eMode.end ) mode = 0;
             idp  [mode].set (   );
 
-            myForm.dialog.dialButtonTextOut.Enabled = 
+            adsset();
+        }
+
+        public void setback()
+        {
+            idp[mode].save();
+            if (mode == 0) mode = (int)eMode.MIN;
+            else           mode--;
+            idp[mode].set();
+
+            adsset();
+        }
+
+        private void adsset()
+        {
+            myForm.dialog.dialButtonTextOut.Enabled =
                 mode == (int)eMode.MAX ? true : false;
 
-            myForm.dialog.dialButtonBorder.Enabled  =
+            myForm.dialog.dialButtonBorder.Enabled =
                 mode != (int)eMode.MIN ? true : false;
+
+            if ((eMode)mode == eMode.MID ||
+                (eMode)mode == eMode.MIN)
+            {
+                User32.deActive(myform);
+            }
         }
 
         private void save(){ idp[mode].save(); }

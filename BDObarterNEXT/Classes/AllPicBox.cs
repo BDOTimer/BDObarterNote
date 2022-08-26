@@ -13,11 +13,8 @@ namespace BDObarterNEXT
     public sealed class AllPicBox
     {
         public AllPicBox(myForm F)
-        {
-            myform = F;
-          //MLF.textout.add("new AllPicBox(...)");
-          //MLF.textout.add("AllPicBox.Config.scale", myform.cfg.scale);
-
+        { 
+            myform            = F;
             colorButtonHolder = new ColorButtonHolder();
 
             MLF.ReMove  (F.get_panelSources());
@@ -28,10 +25,6 @@ namespace BDObarterNEXT
             setNPV      (3);
 
             correctForm (F);
-
-          //debug(cargo);
-
-          //MLF.textout.add("cargo.Count", cargo.Count);
         }
 
         myForm              myform;
@@ -57,8 +50,6 @@ namespace BDObarterNEXT
             int cnt = 0;
             cargo   = new List<Panel>     (namefiles.Count);
             cargoPB = new List<PictureBox>[namefiles.Count];
-
-            MLF.textout.add("cargo.Count", cargo.Count);
 
             foreach (var names in namefiles)
             {
@@ -96,12 +87,17 @@ namespace BDObarterNEXT
             foreach (DirectoryInfo dir in subDirs)
             {
                 try
-                {   namefiles.Add(dir.GetFiles(filtr));
+                {   int iback = namefiles.Count;
+
+                        namefiles.Add(dir.GetFiles(filtr));
+                    if (namefiles[iback].Length == 0)
+                    {   namefiles.RemoveAt(iback);
+                    }
                 }
                 catch (UnauthorizedAccessException e)
                 {   MLF.textout.add(e.Message);
                 }
-                catch (DirectoryNotFoundException e)
+                catch (DirectoryNotFoundException  e)
                 {   MLF.textout.add(e.Message);
                 }
             }
@@ -261,7 +257,7 @@ namespace BDObarterNEXT
         private void viewNPV()
         {   myForm        F = (myForm)cargo[0].Parent;
             F.buttonNP.Text = Convert.ToString(nowPanelVis);
-            colorButtonHolder.setColorForegraound(F.buttonNP, nowPanelVis);
+            colorButtonHolder.setColorForeground(F.buttonNP, nowPanelVis);
         }
 
         //--------------------------------------|
@@ -412,11 +408,9 @@ namespace BDObarterNEXT
 
         Color[] color;
 
-        public void setColorForegraound(Control C, int i)
-        {
-            if (i > 5)
-            {   C.ForeColor = MyLib.rgb(0, 0, 0); return;
-            }   C.ForeColor = color[i];
+        public void setColorForeground(Control C, int i)
+        {   if(i > 5) C.ForeColor = MyLib.rgb(0, 0, 0);
+            else      C.ForeColor = color[i];
         }
     }
 }

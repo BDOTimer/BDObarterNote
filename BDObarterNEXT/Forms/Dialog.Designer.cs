@@ -38,8 +38,10 @@
             this.trackBarOpacity = new System.Windows.Forms.TrackBar();
             this.labelOpacity = new System.Windows.Forms.Label();
             this.toolTipWarning = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // dialButtonReset
@@ -66,6 +68,7 @@
             // 
             // dialTrackBarScale
             // 
+            this.dialTrackBarScale.BackColor = System.Drawing.SystemColors.ControlLight;
             this.dialTrackBarScale.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.dialTrackBarScale.Location = new System.Drawing.Point(12, 132);
             this.dialTrackBarScale.Maximum = 80;
@@ -79,20 +82,23 @@
             // 
             // dialButtonExit
             // 
-            this.dialButtonExit.BackColor = System.Drawing.Color.Gray;
+            this.dialButtonExit.BackColor = System.Drawing.Color.Gainsboro;
             this.dialButtonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dialButtonExit.ForeColor = System.Drawing.Color.White;
-            this.dialButtonExit.Location = new System.Drawing.Point(207, 227);
+            this.dialButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dialButtonExit.Font = new System.Drawing.Font("Georgia", 6.25F);
+            this.dialButtonExit.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.dialButtonExit.Location = new System.Drawing.Point(221, 232);
             this.dialButtonExit.Name = "dialButtonExit";
-            this.dialButtonExit.Size = new System.Drawing.Size(65, 23);
+            this.dialButtonExit.Size = new System.Drawing.Size(51, 18);
             this.dialButtonExit.TabIndex = 3;
-            this.dialButtonExit.Text = "Выход ...";
+            this.dialButtonExit.Text = "ВЫХОД";
             this.dialButtonExit.UseVisualStyleBackColor = false;
             this.dialButtonExit.Click += new System.EventHandler(this.dialButtonExit_Click);
             // 
             // labelScale
             // 
             this.labelScale.AutoSize = true;
+            this.labelScale.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.labelScale.Location = new System.Drawing.Point(12, 116);
             this.labelScale.Name = "labelScale";
             this.labelScale.Size = new System.Drawing.Size(59, 13);
@@ -118,8 +124,9 @@
             // 
             // trackBarOpacity
             // 
+            this.trackBarOpacity.BackColor = System.Drawing.SystemColors.ControlLight;
             this.trackBarOpacity.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.trackBarOpacity.Location = new System.Drawing.Point(15, 183);
+            this.trackBarOpacity.Location = new System.Drawing.Point(12, 194);
             this.trackBarOpacity.Maximum = 80;
             this.trackBarOpacity.Name = "trackBarOpacity";
             this.trackBarOpacity.Size = new System.Drawing.Size(79, 45);
@@ -131,7 +138,8 @@
             // labelOpacity
             // 
             this.labelOpacity.AutoSize = true;
-            this.labelOpacity.Location = new System.Drawing.Point(12, 167);
+            this.labelOpacity.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.labelOpacity.Location = new System.Drawing.Point(12, 178);
             this.labelOpacity.Name = "labelOpacity";
             this.labelOpacity.Size = new System.Drawing.Size(85, 13);
             this.labelOpacity.TabIndex = 7;
@@ -144,6 +152,18 @@
             this.toolTipWarning.IsBalloon = true;
             this.toolTipWarning.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
             this.toolTipWarning.ToolTipTitle = "Ахтунг!";
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.BackgroundImage = global::BDObarterNEXT.Properties.Resources.test2;
+            this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(115, 10);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(157, 81);
+            this.pictureBoxLogo.TabIndex = 8;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.WaitOnLoad = true;
             // 
             // Dialog
             // 
@@ -158,6 +178,7 @@
             this.Controls.Add(this.dialTrackBarScale);
             this.Controls.Add(this.dialButtonBorder);
             this.Controls.Add(this.dialButtonReset);
+            this.Controls.Add(this.pictureBoxLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Dialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -167,6 +188,7 @@
             this.Load += new System.EventHandler(this.Dialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +206,6 @@
         private System.Windows.Forms.ToolTip toolTipWarning;
         public System.Windows.Forms.Button dialButtonExit;
         public System.Windows.Forms.TrackBar trackBarOpacity;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }

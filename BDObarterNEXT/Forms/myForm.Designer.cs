@@ -70,7 +70,7 @@
             // 
             // buttonShow
             // 
-            this.buttonShow.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.buttonShow.Cursor = System.Windows.Forms.Cursors.PanNE;
             this.buttonShow.Location = new System.Drawing.Point(466, 0);
             this.buttonShow.Name = "buttonShow";
             this.buttonShow.Size = new System.Drawing.Size(50, 50);

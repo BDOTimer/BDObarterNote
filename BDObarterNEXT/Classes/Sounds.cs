@@ -20,13 +20,17 @@ namespace BDObarterNEXT
         }
 
         public enum eSND //  sounds.play(MySounds.eSND.MOVE);
-        {   MOVE = 0,
-            SHOW    ,
-            RESET   ,
-            NPANEL  ,
-            MOVEBACK,
-            EXIT    ,
-            TOSOURCE,
+        {   MOVE   = 0,
+            SHOW      ,
+            RESET     ,
+            NPANEL    ,
+            MOVEBACK  ,
+            EXIT      ,
+            TOSOURCE  ,
+            SHOWRIGHT ,
+            ATTENTION ,
+            OPENDIALOG,
+            START     ,
             // ...
             end
         }

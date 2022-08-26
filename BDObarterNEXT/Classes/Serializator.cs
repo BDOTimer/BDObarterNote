@@ -39,7 +39,7 @@ namespace BDObarterNEXT
                 );
             }
             catch
-            {   //throw;
+            {   MyLib.textout.add("ERROR: create_load()");
                 error = true;
             }
         }
@@ -55,19 +55,26 @@ namespace BDObarterNEXT
         // save.                            |
         //----------------------------------:
         FileStream        output;
-        public void create_save()
-        {
+        public bool create_save()
+        {   
             close();
-
-            output = new FileStream(
-                filename               ,
-                FileMode  .OpenOrCreate,
-                FileAccess.Write
-            );
+            try
+            {   output = new FileStream(
+                    filename,
+                    FileMode.OpenOrCreate,
+                    FileAccess.Write
+                );
+            }
+            catch
+            {   MyLib.textout.add("ERROR: create_save()");
+                error = true;
+            }
+            return error;
         }
 
         public void save<T>(ref T o)
-        {   formatter.Serialize(output, o);
+        {   if(error) return;
+            formatter.Serialize(output, o);
         }
 
         private void close_save() { if (output != null) output.Close(); }

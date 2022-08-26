@@ -16,7 +16,7 @@ namespace BDObarterNEXT
     {
         public myForm()
         {
-            MySounds.xxxtest();
+          //MySounds.xxxtest();
 
             InitializeComponent ();
           //this.KeyPreview = true;
@@ -34,7 +34,7 @@ namespace BDObarterNEXT
             showmode      = new Showmode (this);
             sounds        = new MySounds (    );
 
-            MyLib.textout.add("cfg.scale", cfg.scale);
+            sounds.play(MySounds.eSND.START);
 
             init_move_myform();
 
@@ -65,16 +65,19 @@ namespace BDObarterNEXT
         public TextBox get_textOut     () { return textOut     ;}
 
         private void myForm_Load(object sender, EventArgs e)
-        {   MyLib.textout.add("myForm_Load(...)");
+        {   //MyLib.textout.add("myForm_Load(...)");
         }
 
         private void buttonDial_Click(object sender, EventArgs e)
-        {   dialog.OnOff();
+        {
+            sounds.play(MySounds.eSND.OPENDIALOG);
+            dialog.OnOff();
         }
 
         private void myForm_FormClosing(object sender, FormClosingEventArgs e)
         {   if (dialog.isclickexit)
             {   // EXIT!
+                this.Visible = false;
                 sounds.play_sync(MySounds.eSND.EXIT);
                 this  .tofile   ( );
             }
@@ -163,9 +166,23 @@ namespace BDObarterNEXT
         {   mcur = false;
             if (mcurdone)
             {
-                if (((Control)sender).Name == "buttonShow")
-                {   sounds  .play(MySounds.eSND.SHOW);
-                    showmode.set ();
+               if (((Control)sender).Name == "buttonShow")
+                {   
+                    switch (e.Button)
+                    {
+                        case MouseButtons.Left:
+                        {
+                            sounds.play(MySounds.eSND.SHOW);
+                            showmode.set();
+                            break;
+                        }
+                        case MouseButtons.Right:
+                        {
+                            sounds.play(MySounds.eSND.SHOWRIGHT);
+                            showmode.setback();
+                            break;
+                        }
+                    }
                 }
             }
             else mcurdone = true;
@@ -224,7 +241,7 @@ namespace BDObarterNEXT
             cfg.transparency = dialog.trackBarOpacity.Value;
             myForm.showmode.tocfg();
 
-            mySerial.create_save ();
+            mySerial.create_save( );
             mySerial.save (ref cfg);
             mySerial.close(       );
         }

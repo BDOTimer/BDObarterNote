@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="Classes\AllPicBox.cs" />
     <Compile Include="Classes\Config.cs" />
+    <Compile Include="Classes\User32.cs" />
     <Compile Include="Forms\myForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Res\BDObarterNEXT_TemporaryKey.pfx" />
     <None Include="Res\myKeys.snk" />
@@ -160,6 +162,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Res\2.ico" />
+    <None Include="Res\dialback_.jpg" />
+    <None Include="Res\test2.jpg" />
     <Content Include="Res\Изменения текщего комита.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +187,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

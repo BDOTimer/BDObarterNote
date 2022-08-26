@@ -38,19 +38,31 @@ namespace BDObarterNEXT
         private void Dialog_Load(object sender, EventArgs e)
         {   toolTipWarning.SetToolTip(dialButtonExit, "ВЫХОД из программы!");
             toolTipWarning.UseFading = true;
+            toolTipWarning.Popup += new PopupEventHandler(toolTipWarning_Popup);
         }
 
-        private static string labelscaletext ;
+        private static string labelscaletext  ;
         private static string labelopacitytext;
 
+        private void toolTipWarning_Popup(object sender, EventArgs e)
+        {   myForm.sounds.play(MySounds.eSND.ATTENTION);
+        }
+
+        //-------------------------------------------|
+        //  Create                                   |<------------------------|
+        //-------------------------------------------:
+        static Bitmap jpg;
         public  static Dialog Create(myForm F)
         {   myform = F;
+            jpg    = global::BDObarterNEXT.Properties.Resources.dialback_;
 
             Dialog dial         = new Dialog();
                    dial.Owner   = F           ;
                    dial.Show                ();
                    dial.Visible = myForm.cfg.dialVisible;
 
+                   dial.BackgroundImage = jpg;
+            
                    labelscaletext    = dial.labelScale.Text;
                    dial.labelScale.Text  = labelscaletext
                                          + Convert.ToString(myForm.cfg.scale);
@@ -90,8 +102,6 @@ namespace BDObarterNEXT
         //----------------------------------------------------- setButtonBorder:
         public void setButtonBorder(FormBorderStyle a)
         {
-            MyLib.textout.add("setButtonBorder()");
-
             myform.FormBorderStyle = a;
 
             if (a == BY) this.dialButtonBorder.BackColor = MyLib.rgb(200, 255, 200);
@@ -101,8 +111,6 @@ namespace BDObarterNEXT
         //-------------------------------------------------- switchButtonBorder:
         public void switchButtonBorder()
         {
-            MyLib.textout.add("switchButtonBorder()");
-
             FormBorderStyle a = myform.FormBorderStyle;
 
             if (a == BN) setButtonBorder(BY);
@@ -131,7 +139,7 @@ namespace BDObarterNEXT
           //myform.ResumeLayout(false);
 
             if (myForm.fromdipto_font == null)
-            {   MyLib.textout.add("myForm.fromdipto_font == null");
+            {   //MyLib.textout.add("myForm.fromdipto_font == null");
                 return;
             }
 

@@ -126,7 +126,7 @@ namespace BDObarterNEXT
 
         public static Point GetScreenResolution()
         {   Screen myScreen = Screen.PrimaryScreen;
-            Rectangle area  = myScreen.WorkingArea;
+            Rectangle  area = myScreen.WorkingArea;
             return new Point(area.Width, area.Height);
         }
 
