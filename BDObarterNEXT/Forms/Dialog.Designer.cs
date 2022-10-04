@@ -39,6 +39,7 @@
             this.labelOpacity = new System.Windows.Forms.Label();
             this.toolTipWarning = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.checkBox_Block = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
@@ -165,11 +166,25 @@
             this.pictureBoxLogo.TabStop = false;
             this.pictureBoxLogo.WaitOnLoad = true;
             // 
+            // checkBox_Block
+            // 
+            this.checkBox_Block.AutoSize = true;
+            this.checkBox_Block.CheckAlign = System.Drawing.ContentAlignment.TopRight;
+            this.checkBox_Block.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox_Block.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.checkBox_Block.Location = new System.Drawing.Point(195, 194);
+            this.checkBox_Block.Name = "checkBox_Block";
+            this.checkBox_Block.Size = new System.Drawing.Size(77, 17);
+            this.checkBox_Block.TabIndex = 11;
+            this.checkBox_Block.Text = "БлокДраг";
+            this.checkBox_Block.UseVisualStyleBackColor = true;
+            // 
             // Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.checkBox_Block);
             this.Controls.Add(this.labelOpacity);
             this.Controls.Add(this.trackBarOpacity);
             this.Controls.Add(this.dialButtonTextOut);
@@ -207,5 +222,6 @@
         public System.Windows.Forms.Button dialButtonExit;
         public System.Windows.Forms.TrackBar trackBarOpacity;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.CheckBox checkBox_Block;
     }
 }

@@ -6,6 +6,7 @@
 //      3. Свёрнутый в иконку на экране.
 //-----------------------------------------------------------------------------| 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace BDObarterNEXT
         {
             myform  = F;
 
+            load_icon(F);
+
             idp    = new Datapos[(int)Showmode.eMode.end];
             idp[0] = new DataposMax(F);
             idp[1] = new DataposMid(F);
@@ -32,8 +35,8 @@ namespace BDObarterNEXT
             idp[mode].set();
         }
 
-        private myForm myform;
-        private IDP[]  idp   ;
+        private myForm myform  ;
+        private IDP[]  idp     ;
 
         public void tocfg()
         {   idp[mode].PF = myform.DesktopLocation;
@@ -103,6 +106,12 @@ namespace BDObarterNEXT
             {   smode.set      (i);
             }
         }
+
+        public static void load_icon(myForm F)
+        {   using (var stream      = File.Open("icon.jpg", FileMode.Open))
+            {   F.buttonShow.Image = Image.FromStream(stream);
+            }
+        }
     }
 
     //---------------------------------|
@@ -122,9 +131,9 @@ namespace BDObarterNEXT
     //---------------------------------:
     [Serializable]
     public class Datapos : IDP
-    {
+    {   
         [NonSerialized]
-        protected myForm F;
+        protected     myForm F;
 
         //--------------------|
         // Позиция формы.     |
@@ -223,7 +232,7 @@ namespace BDObarterNEXT
         {
             this.F = F;
             init(F);
-          //calc( )   ;
+          //calc( );
             F.DesktopLocation = pf = myForm.cfg.PXY1;
         }
 
@@ -283,8 +292,8 @@ namespace BDObarterNEXT
 
         private void calc()
         {   F.buttonShow.Location   = new Point(0, 0);
-            F.buttonShow.ClientSize = new Size(50, 50);
-            F.ClientSize            = new Size(50, 50);
+            F.buttonShow.ClientSize = new Size(30, 30);
+            F.ClientSize            = new Size(30, 30);
         }
 
         public override void tocfg()

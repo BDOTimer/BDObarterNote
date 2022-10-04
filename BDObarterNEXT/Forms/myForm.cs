@@ -77,9 +77,9 @@ namespace BDObarterNEXT
         private void myForm_FormClosing(object sender, FormClosingEventArgs e)
         {   if (dialog.isclickexit)
             {   // EXIT!
+                this.tofile     (  );
                 this.Visible = false;
                 sounds.play_sync(MySounds.eSND.EXIT);
-                this  .tofile   ( );
             }
             else
             {   dialog.Visible   = false;
@@ -190,7 +190,7 @@ namespace BDObarterNEXT
 
         private void buttonShow_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mcur)
+            if (mcur && !dialog.is_block_drag())
             {
                 Point cp    = Cursor.Position;
                       cp.X -= Cursorpos.X;
@@ -240,6 +240,8 @@ namespace BDObarterNEXT
             cfg.dialVisible  = dialog.Visible;
             cfg.transparency = dialog.trackBarOpacity.Value;
             myForm.showmode.tocfg();
+
+            cfg.is_block = dialog.is_block_drag();
 
             mySerial.create_save( );
             mySerial.save (ref cfg);

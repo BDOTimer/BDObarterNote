@@ -81,6 +81,15 @@ namespace BDObarterNEXT
             set { scale_ = value; }
         }
 
+        //---------------------------------|
+        //  Блокировка перемещения форм.   |
+        //---------------------------------:
+        private bool is_block_ = false;
+        public  bool is_block
+        {   get { return  is_block_; }
+            set { is_block_ = value; }
+        }
+
         public FormBorderStyle formBorderStyle = FormBorderStyle.FixedSingle;
         public bool            dialVisible     = true;
         public int             transparency    = 10;

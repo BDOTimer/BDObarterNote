@@ -75,7 +75,6 @@
             this.buttonShow.Name = "buttonShow";
             this.buttonShow.Size = new System.Drawing.Size(50, 50);
             this.buttonShow.TabIndex = 3;
-            this.buttonShow.Text = "O";
             this.buttonShow.UseVisualStyleBackColor = true;
             this.buttonShow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonShow_MouseDown);
             this.buttonShow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonShow_MouseMove);

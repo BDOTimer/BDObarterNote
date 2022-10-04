@@ -20,7 +20,7 @@ namespace BDObarterNEXT
         //--------------------------------------:
         public static void ReMove(Control B)
         {
-            if (B.Parent == null) return;
+            if(B.Parent == null) return;
             B.Parent.Controls.Remove(B);
         }
 

@@ -36,7 +36,8 @@ namespace BDObarterNEXT
         static myForm myform;
 
         private void Dialog_Load(object sender, EventArgs e)
-        {   toolTipWarning.SetToolTip(dialButtonExit, "ВЫХОД из программы!");
+        {
+            toolTipWarning.SetToolTip(dialButtonExit, "ВЫХОД из программы!");
             toolTipWarning.UseFading = true;
             toolTipWarning.Popup += new PopupEventHandler(toolTipWarning_Popup);
         }
@@ -75,6 +76,8 @@ namespace BDObarterNEXT
                    dial.trackBarOpacity.Value = op ;
                    dial.labelOpacity.Text = labelopacitytext
                                           + Convert.ToString(op);
+                   
+                   dial.checkBox_Block.Checked = myForm.cfg.is_block;
             return dial;
         }
 
@@ -94,6 +97,7 @@ namespace BDObarterNEXT
         private void dialButtonReset_Click(object sender, EventArgs e)
         {   myForm.sounds.play(MySounds.eSND.RESET);
             myForm.apbox.reset();
+            this.Close();
         }
 
         const FormBorderStyle BY = FormBorderStyle.FixedSingle;
@@ -175,6 +179,10 @@ namespace BDObarterNEXT
         private void setTransparency(int op)
         {  (this.Owner).Opacity     = 0.01 * (100 - op);
             this.labelOpacity.Text  = labelopacitytext + Convert.ToString(op);
+        }
+
+        public bool is_block_drag()
+        {   return checkBox_Block.Checked;
         }
     }
 }
