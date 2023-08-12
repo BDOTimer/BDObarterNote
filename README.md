@@ -31,6 +31,6 @@ ____
 ____ 
 ...
 
-[![IMAGE ALT TEXT HERE](https://i9.ytimg.com/vi_webp/zcUCQuqJXRs/mqdefault.webp?v=64d75ac8&sqp=CNzO3aYG&rs=AOn4CLCKCr3r8sy7zW36NCuTpllwNOmu5g)](https://www.youtube.com/watch?v=zcUCQuqJXRs)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/zcUCQuqJXRs/0.jpg)](https://www.youtube.com/watch?v=zcUCQuqJXRs)
 
 
