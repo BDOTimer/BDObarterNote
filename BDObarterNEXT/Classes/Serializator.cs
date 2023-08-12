@@ -57,6 +57,7 @@ namespace BDObarterNEXT
         FileStream        output;
         public bool create_save()
         {   
+
             close();
             try
             {   output = new FileStream(

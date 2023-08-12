@@ -6,6 +6,9 @@ using System.Text;
 using System.IO;
 using System.Media;
 
+using System.Threading;
+using System.Threading.Tasks;
+
 using System.Windows.Media; // WindowsBase.dll, PresentationCore.dll
 
 namespace BDObarterNEXT
@@ -28,14 +31,14 @@ namespace BDObarterNEXT
             EXIT      ,
             TOSOURCE  ,
             SHOWRIGHT ,
-            ATTENTION ,
+            AHTUNG    ,
             OPENDIALOG,
             START     ,
             // ...
             end
         }
 
-        private SoundPlayer  sp   ;
+        private SoundPlayer[]  sp   ;
         private List<string> files;
         private void load_sounds()
         {
@@ -44,8 +47,20 @@ namespace BDObarterNEXT
                     "./snd",
                     "*.wav",
                     SearchOption.TopDirectoryOnly)
-                    select Path.GetFileName(a)
+                    select "snd/" + Path.GetFileName(a)
                 ).ToList();
+
+            sp = new SoundPlayer[files.Count];
+
+            for(int i  = 0; i < sp.Length; ++i)
+            {   sp [i] = new SoundPlayer     ();
+                sp [i].SoundLocation = files[i];
+              //sp [i].Load     ();
+                sp [i].LoadAsync();
+              //sp [i].Stream = new FileStream( files[i],
+              //                                FileMode.Open,
+              //                                FileAccess.Read );
+            }
         }
 
         private List<SoundPlayer> my;
@@ -62,20 +77,20 @@ namespace BDObarterNEXT
             }
         }
 
-        public void play      (MySounds.eSND i)
-        {   sp = new System.Media.SoundPlayer("snd/" + files[(int)i]);
-            sp.Play();
+        public void play_t      (MySounds.eSND I)
+        {   //sp = new System.Media.SoundPlayer("snd/" + files[(int)i]);
+            sp [(int)I].Play();
         }
-        public void play_sync (MySounds.eSND i)
-        {   sp = new System.Media.SoundPlayer("snd/" + files[(int)i]);
-            sp.PlaySync();
+        public void play_sync (MySounds.eSND I)
+        {   //sp = new System.Media.SoundPlayer("snd/" + files[(int)i]);
+            sp [(int)I].PlaySync();
         }
 
-        public void xplay     (MySounds.eSND i)
-        {   my[(int)i].Play();
+        public void xplay     (MySounds.eSND I)
+        {   my[(int)I].Play();
         }
-        public void xplay_sync(MySounds.eSND i)
-        {   my[(int)i].PlaySync();
+        public void xplay_sync(MySounds.eSND I)
+        {   my[(int)I].PlaySync();
         }
 
         // Для работы необходимо подключить WindowsBase.dll PresentationCore.dll
@@ -87,6 +102,29 @@ namespace BDObarterNEXT
         {   player .Open(new Uri("snd\\boyz.mp3", UriKind.Relative));
             player .Play   ();
           //player .Close  ();
+        }
+
+        ///-------------------|
+        /// Thread.           |
+        ///-------------------:
+        MySounds.eSND id_sound;
+        public void play(MySounds.eSND n)
+        {   
+            if(!myForm.dialog.isSound() && eSND.AHTUNG != n)
+            {   id_sound = eSND.MOVEBACK;
+            }
+            else
+            {   id_sound = n;
+            }
+            
+            Thread 
+            t = new Thread(new ThreadStart(this.foofoo));
+            t.Start();
+        }
+
+        private void foofoo()
+        {   play_t (id_sound);
+            //Debug.Out.add("Sound::foofoo - ", id_sound.ToString());
         }
     }
 }

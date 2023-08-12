@@ -68,12 +68,6 @@ namespace BDObarterNEXT
         {   //MyLib.textout.add("myForm_Load(...)");
         }
 
-        private void buttonDial_Click(object sender, EventArgs e)
-        {
-            sounds.play(MySounds.eSND.OPENDIALOG);
-            dialog.OnOff();
-        }
-
         private void myForm_FormClosing(object sender, FormClosingEventArgs e)
         {   if (dialog.isclickexit)
             {   // EXIT!
@@ -132,11 +126,15 @@ namespace BDObarterNEXT
                         }
                         case MouseButtons.Right:
                         {   
-                            break;
+                            return;
                         }
                     }
                     break;
                 }
+            }
+
+            if(dialog.isDeActive())
+            {   User32.deActive_after_click(this);
             }
         }
 
@@ -172,16 +170,21 @@ namespace BDObarterNEXT
                     {
                         case MouseButtons.Left:
                         {
-                            sounds.play(MySounds.eSND.SHOW);
+                            sounds.play (MySounds.eSND.SHOW);
                             showmode.set();
                             break;
                         }
+
                         case MouseButtons.Right:
                         {
-                            sounds.play(MySounds.eSND.SHOWRIGHT);
+                            sounds.play     (MySounds.eSND.SHOWRIGHT);
                             showmode.setback();
                             break;
                         }
+                    }
+
+                    if (dialog.isDeActive())
+                    {   User32.deActive_after_click(this);
                     }
                 }
             }
@@ -205,7 +208,7 @@ namespace BDObarterNEXT
                       dl.Y += cp.Y;
 
                 Cursorpos   = Cursor.Position;
-                this    .SetDesktopLocation(dl.X, dl.Y);
+                this.SetDesktopLocation(dl.X, dl.Y);
             }
         }
 
@@ -239,6 +242,9 @@ namespace BDObarterNEXT
         {
             cfg.dialVisible  = dialog.Visible;
             cfg.transparency = dialog.trackBarOpacity.Value;
+            cfg.isSound      = dialog.isSound   ();
+            cfg.isDeactive   = dialog.isDeActive();
+
             myForm.showmode.tocfg();
 
             cfg.is_block = dialog.is_block_drag();
@@ -246,6 +252,24 @@ namespace BDObarterNEXT
             mySerial.create_save( );
             mySerial.save (ref cfg);
             mySerial.close(       );
+        }
+
+        private void buttonDialog_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                {   sounds.play(MySounds.eSND.OPENDIALOG);
+                    dialog.OnOff();
+                    break;
+                }
+                case MouseButtons.Right:
+                {   myForm.sounds.play         (MySounds.eSND.RESET);
+                    myForm.apbox.reset         ();
+                    myForm.showmode.setmode_Max();
+                    break;
+                }
+            }
         }
     }
 }

@@ -226,7 +226,7 @@ namespace BDObarterNEXT
                 reCorrected(F);
                 return true;
             }
-            return false; 
+            return false;
         }
 
         private int  nowPanelVis = 0;

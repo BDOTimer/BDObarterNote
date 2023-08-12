@@ -61,16 +61,17 @@
     <ManifestKeyFile>Res\BDObarterNEXT_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Res\myKeys.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>false</DelaySign>
@@ -83,6 +84,7 @@
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -147,8 +149,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Res\BDObarterNEXT_TemporaryKey.pfx" />
-    <None Include="Res\myKeys.snk" />
+    <None Include="app.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -18,7 +18,6 @@ using MLF = BDObarterNEXT.MyLib;
 
 namespace BDObarterNEXT
 {
-
     public sealed class Showmode
     {
         public Showmode(myForm F)
@@ -73,6 +72,16 @@ namespace BDObarterNEXT
             adsset();
         }
 
+        public void setmode_Max()
+        {   
+            if(mode == (int)eMode.MAX) return;
+
+            idp  [mode].save(   ); mode = (int)eMode.MAX;
+            idp  [mode].set (   );
+
+            adsset();
+        }
+
         private void adsset()
         {
             myForm.dialog.dialButtonTextOut.Enabled =
@@ -81,11 +90,11 @@ namespace BDObarterNEXT
             myForm.dialog.dialButtonBorder.Enabled =
                 mode != (int)eMode.MIN ? true : false;
 
-            if ((eMode)mode == eMode.MID ||
-                (eMode)mode == eMode.MIN)
-            {
-                User32.deActive(myform);
-            }
+            //if ((eMode)mode == eMode.MID ||
+            //    (eMode)mode == eMode.MIN)
+            //{
+            //    User32.deActive(myform);
+            //}
         }
 
         private void save(){ idp[mode].save(); }

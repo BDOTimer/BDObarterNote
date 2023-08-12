@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using System.Diagnostics;
+
 namespace BDObarterNEXT
 {
     public partial class Dialog : Form
@@ -22,6 +24,9 @@ namespace BDObarterNEXT
             CCforfont[1] = myform.buttonShow;
 
             setButtonBorder(myForm.cfg.formBorderStyle);
+
+            setIsSound (myForm.cfg.isSound   );
+            setDeActive(myForm.cfg.isDeactive);
         }
 
         private Control[] CCforfont;
@@ -46,7 +51,7 @@ namespace BDObarterNEXT
         private static string labelopacitytext;
 
         private void toolTipWarning_Popup(object sender, EventArgs e)
-        {   myForm.sounds.play(MySounds.eSND.ATTENTION);
+        {   myForm.sounds.play(MySounds.eSND.AHTUNG);
         }
 
         //-------------------------------------------|
@@ -96,8 +101,11 @@ namespace BDObarterNEXT
 
         private void dialButtonReset_Click(object sender, EventArgs e)
         {   myForm.sounds.play(MySounds.eSND.RESET);
+            
             myForm.apbox.reset();
             this.Close();
+
+            myForm.showmode.setmode_Max();
         }
 
         const FormBorderStyle BY = FormBorderStyle.FixedSingle;
@@ -133,7 +141,11 @@ namespace BDObarterNEXT
         }
 
         private void dialTrackBarScale_ValueChanged(object sender, EventArgs e)
-        {
+        {   
+            if( myForm.showmode != null)
+            {   myForm.showmode.setmode_Max();
+            }
+
             myForm.cfg.scale     = dialTrackBarScale.Value;
             this.labelScale.Text = labelscaletext
                                  + Convert.ToString(dialTrackBarScale.Value);
@@ -183,6 +195,42 @@ namespace BDObarterNEXT
 
         public bool is_block_drag()
         {   return checkBox_Block.Checked;
+        }
+
+        public bool isSound()
+        {   return checkSound.Checked;
+        }
+
+        public void setIsSound(bool   b)
+        {   /// MyLib.textout.add("b = " + b);
+
+            checkSound.Checked      = b;
+            checkSound.CheckState   = b ? CheckState.Checked
+                                        : CheckState.Unchecked;
+        }
+
+        public bool isDeActive()
+        {   return checkDeActive.Checked;
+        }
+
+        public void setDeActive(bool   b)
+        {   /// MyLib.textout.add("b = " + b);
+
+            checkDeActive.Checked    = b;
+            checkDeActive.CheckState = b ? CheckState.Checked
+                                         : CheckState.Unchecked;
+        }
+
+        private void buttonClose_MouseDown(object sender, MouseEventArgs e)
+        {   myForm.sounds.play(MySounds.eSND.MOVEBACK);
+            this.Close();
+        }
+
+        private void buttonHelp_MouseDown(object sender, MouseEventArgs e)
+        {   try
+            {   Process.Start(@"help\help.html");
+            }
+            catch{}
         }
     }
 }

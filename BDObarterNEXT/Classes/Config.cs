@@ -23,6 +23,18 @@ namespace BDObarterNEXT
 
         public static string filename = "cfg.1";
 
+        private bool _isSound = true;
+        public  bool  isSound
+        {   get { return  _isSound; }
+            set { _isSound = value; }
+        }
+
+        private bool _isDeactive = true; ///////////////////////////////////////
+        public  bool  isDeactive
+        {   get { return  _isDeactive; }
+            set { _isDeactive = value; }
+        }
+
         //-----------------------------------------------------|
         //  Поля конфига.                                      | 
         //-----------------------------------------------------:
@@ -65,7 +77,7 @@ namespace BDObarterNEXT
         //---------------------------------|
         //  Показать окно сообщений.       | 
         //---------------------------------:
-        private bool b = true;//false;
+        private bool b = true;
         public bool is_show_mess_win
         {
             get { return  b; }

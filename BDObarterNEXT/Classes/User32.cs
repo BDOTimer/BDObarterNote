@@ -234,7 +234,7 @@ namespace BDObarterNEXT
             // ReSharper restore InconsistentNaming
         }
 
-        public  static void deActive(Form myform)
+        public  static void xdeActive(Form myform)
         {
             myform.Close();
             ShowWindow(myform.Handle, ShowWindowCommands.ShowMinimized);
@@ -247,6 +247,25 @@ namespace BDObarterNEXT
             //    SetWindowPosFlags.SWP_NOMOVE       |
             //    SetWindowPosFlags.SWP_NOACTIVATE
             //);
+        }
+
+        public  static void deActive_after_click(Form myform)
+        {   //myform.Close();
+            //ShowWindow(myform.Handle, ShowWindowCommands.ShowMinimized);
+            //ShowWindow(myform.Handle, ShowWindowCommands.ShowNoActivate);
+            
+            ShowWindow(myform.Handle, ShowWindowCommands.Hide          );
+            ShowWindow(myform.Handle, ShowWindowCommands.ShowNoActivate);
+          
+            /*
+            SetWindowPos(
+                myform.Handle, HWND_TOPMOST, 0, 0, 0, 0,
+                SetWindowPosFlags.SWP_NOSIZE       |
+                SetWindowPosFlags.SWP_NOREPOSITION |
+                SetWindowPosFlags.SWP_NOMOVE       |
+                SetWindowPosFlags.SWP_NOACTIVATE
+            );
+            */
         }
     }
 }

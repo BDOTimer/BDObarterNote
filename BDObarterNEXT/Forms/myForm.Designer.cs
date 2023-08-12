@@ -90,7 +90,7 @@
             this.buttonDialog.TabIndex = 4;
             this.buttonDialog.Text = ".";
             this.buttonDialog.UseVisualStyleBackColor = false;
-            this.buttonDialog.Click += new System.EventHandler(this.buttonDial_Click);
+            this.buttonDialog.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonDialog_MouseDown);
             // 
             // buttonNP
             // 
