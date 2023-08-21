@@ -73,6 +73,16 @@ namespace BDObarterNEXT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_rectangle_angle_rectangle_religion {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-rectangle-angle-rectangle-religion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap test2 {
             get {
                 object obj = ResourceManager.GetObject("test2", resourceCulture);

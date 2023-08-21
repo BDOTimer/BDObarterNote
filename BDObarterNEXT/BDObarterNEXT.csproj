@@ -165,6 +165,7 @@
     <Content Include="Res\2.ico" />
     <None Include="Res\dialback_.jpg" />
     <None Include="Res\test2.jpg" />
+    <None Include="Res\png-transparent-rectangle-angle-rectangle-religion.png" />
     <Content Include="Res\Изменения текщего комита.txt" />
   </ItemGroup>
   <ItemGroup>

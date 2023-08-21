@@ -28,7 +28,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dialButtonReset = new System.Windows.Forms.Button();
             this.dialButtonBorder = new System.Windows.Forms.Button();
             this.dialTrackBarScale = new System.Windows.Forms.TrackBar();
             this.dialButtonExit = new System.Windows.Forms.Button();
@@ -38,36 +37,24 @@
             this.trackBarOpacity = new System.Windows.Forms.TrackBar();
             this.labelOpacity = new System.Windows.Forms.Label();
             this.toolTipWarning = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.checkBox_Block = new System.Windows.Forms.CheckBox();
-            this.checkSound = new System.Windows.Forms.CheckBox();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonHelp = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkDeActive = new System.Windows.Forms.CheckBox();
+            this.checkSound = new System.Windows.Forms.CheckBox();
+            this.checkBox_Block = new System.Windows.Forms.CheckBox();
+            this.dialButtonReset = new System.Windows.Forms.Button();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelUp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dialButtonReset
-            // 
-            this.dialButtonReset.BackColor = System.Drawing.SystemColors.Control;
-            this.dialButtonReset.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dialButtonReset.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.dialButtonReset.Location = new System.Drawing.Point(12, 40);
-            this.dialButtonReset.Name = "dialButtonReset";
-            this.dialButtonReset.Size = new System.Drawing.Size(82, 35);
-            this.dialButtonReset.TabIndex = 0;
-            this.dialButtonReset.Text = "Сброс";
-            this.dialButtonReset.UseVisualStyleBackColor = false;
-            this.dialButtonReset.Click += new System.EventHandler(this.dialButtonReset_Click);
             // 
             // dialButtonBorder
             // 
-            this.dialButtonBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(200)))));
+            this.dialButtonBorder.BackColor = System.Drawing.Color.Beige;
             this.dialButtonBorder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dialButtonBorder.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dialButtonBorder.ForeColor = System.Drawing.Color.DarkSlateGray;
@@ -169,49 +156,6 @@
             this.toolTipWarning.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
             this.toolTipWarning.ToolTipTitle = "Ахтунг!";
             // 
-            // pictureBoxLogo
-            // 
-            this.pictureBoxLogo.BackgroundImage = global::BDObarterNEXT.Properties.Resources.test2;
-            this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(100, 40);
-            this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(172, 116);
-            this.pictureBoxLogo.TabIndex = 8;
-            this.pictureBoxLogo.TabStop = false;
-            this.pictureBoxLogo.WaitOnLoad = true;
-            // 
-            // checkBox_Block
-            // 
-            this.checkBox_Block.BackgroundImage = global::BDObarterNEXT.Properties.Resources.dialback_;
-            this.checkBox_Block.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            this.checkBox_Block.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBox_Block.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox_Block.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.checkBox_Block.Location = new System.Drawing.Point(176, 162);
-            this.checkBox_Block.Name = "checkBox_Block";
-            this.checkBox_Block.Size = new System.Drawing.Size(96, 18);
-            this.checkBox_Block.TabIndex = 11;
-            this.checkBox_Block.Text = "БлокДраг";
-            this.checkBox_Block.UseVisualStyleBackColor = true;
-            // 
-            // checkSound
-            // 
-            this.checkSound.AutoSize = true;
-            this.checkSound.BackgroundImage = global::BDObarterNEXT.Properties.Resources.dialback_;
-            this.checkSound.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            this.checkSound.Checked = true;
-            this.checkSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkSound.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkSound.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkSound.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.checkSound.Location = new System.Drawing.Point(176, 186);
-            this.checkSound.Name = "checkSound";
-            this.checkSound.Size = new System.Drawing.Size(96, 18);
-            this.checkSound.TabIndex = 12;
-            this.checkSound.Text = "Озвучка   ";
-            this.checkSound.UseVisualStyleBackColor = true;
-            // 
             // panelUp
             // 
             this.panelUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -274,6 +218,63 @@
             this.checkDeActive.Text = "Деактив   ";
             this.checkDeActive.UseVisualStyleBackColor = true;
             // 
+            // checkSound
+            // 
+            this.checkSound.AutoSize = true;
+            this.checkSound.BackgroundImage = global::BDObarterNEXT.Properties.Resources.dialback_;
+            this.checkSound.CheckAlign = System.Drawing.ContentAlignment.TopRight;
+            this.checkSound.Checked = true;
+            this.checkSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkSound.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkSound.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.checkSound.Location = new System.Drawing.Point(176, 186);
+            this.checkSound.Name = "checkSound";
+            this.checkSound.Size = new System.Drawing.Size(96, 18);
+            this.checkSound.TabIndex = 12;
+            this.checkSound.Text = "Озвучка   ";
+            this.checkSound.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Block
+            // 
+            this.checkBox_Block.BackgroundImage = global::BDObarterNEXT.Properties.Resources.dialback_;
+            this.checkBox_Block.CheckAlign = System.Drawing.ContentAlignment.TopRight;
+            this.checkBox_Block.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox_Block.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_Block.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.checkBox_Block.Location = new System.Drawing.Point(176, 162);
+            this.checkBox_Block.Name = "checkBox_Block";
+            this.checkBox_Block.Size = new System.Drawing.Size(96, 18);
+            this.checkBox_Block.TabIndex = 11;
+            this.checkBox_Block.Text = "БлокДраг";
+            this.checkBox_Block.UseVisualStyleBackColor = true;
+            // 
+            // dialButtonReset
+            // 
+            this.dialButtonReset.BackColor = System.Drawing.SystemColors.Control;
+            this.dialButtonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dialButtonReset.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dialButtonReset.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.dialButtonReset.Location = new System.Drawing.Point(12, 40);
+            this.dialButtonReset.Name = "dialButtonReset";
+            this.dialButtonReset.Size = new System.Drawing.Size(82, 35);
+            this.dialButtonReset.TabIndex = 0;
+            this.dialButtonReset.Text = "Сброс";
+            this.dialButtonReset.UseVisualStyleBackColor = false;
+            this.dialButtonReset.Click += new System.EventHandler(this.dialButtonReset_Click);
+            // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.BackgroundImage = global::BDObarterNEXT.Properties.Resources.test2;
+            this.pictureBoxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(100, 40);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(172, 116);
+            this.pictureBoxLogo.TabIndex = 8;
+            this.pictureBoxLogo.TabStop = false;
+            this.pictureBoxLogo.WaitOnLoad = true;
+            // 
             // Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,9 +307,9 @@
             this.Load += new System.EventHandler(this.Dialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dialTrackBarScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarOpacity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelUp.ResumeLayout(false);
             this.panelUp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
